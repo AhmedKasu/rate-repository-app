@@ -7,7 +7,7 @@ import theme from '../theme';
 const styles = StyleSheet.create({
   barTabs: {
     bottom: 25,
-    flex: 'row',
+    flexDirection: 'row',
     paddingHorizontal: 10,
   },
   container: {
