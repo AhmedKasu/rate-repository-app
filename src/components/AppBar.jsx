@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   barTabs: {
     bottom: 25,
     flexDirection: 'row',
-    paddingHorizontal: 10,
+    justifyContent: 'space-around',
   },
   container: {
     backgroundColor: theme.appBar.backgroundColor,
@@ -23,7 +23,8 @@ const AppBar = () => {
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.barTabs}>
-          <AppBarTab title='Repositories' />
+          <AppBarTab title='Repositories' linkUrl='/' />
+          <AppBarTab title='Sign In' linkUrl='/signIn' />
         </View>
       </View>
     </SafeAreaView>
