@@ -4,7 +4,6 @@ import theme from '../../theme';
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: theme.colors.medium,
     borderRadius: 5,
     height: 70,
     marginVertical: 10,
@@ -16,11 +15,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const TextInput = ({ style, ...props }) => {
+const TextInput = ({ error, style, ...props }) => {
   const textInputStyle = [styles.textInput, style];
+  const borderColor = {
+    borderColor: !error ? theme.colors.medium : theme.colors.errorRed,
+  };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, borderColor]}>
       <NativeTextInput style={textInputStyle} {...props} />
     </View>
   );

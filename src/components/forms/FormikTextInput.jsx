@@ -3,10 +3,12 @@ import { useField } from 'formik';
 
 import TextInput from './TextInput';
 import Text from '../Text';
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   errorText: {
     marginTop: 5,
+    color: theme.colors.errorRed,
   },
 });
 
@@ -17,6 +19,7 @@ const FormikTextInput = ({ name, ...props }) => {
   return (
     <>
       <TextInput
+        error={showError}
         onChangeText={(value) => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
