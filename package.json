@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.10",
     "@expo/metro-config": "^0.7.1",
+    "dotenv": "^16.0.3",
     "expo": "~46.0.19",
     "expo-status-bar": "~1.4.0",
     "formik": "^2.2.9",
