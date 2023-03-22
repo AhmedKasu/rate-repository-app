@@ -5,6 +5,8 @@ import FormikTextInput from './forms/FormikTextInput';
 import HideKeyboard from './forms/HideKeyboard';
 import SubmitButton from './forms/SubmitButton';
 
+import useSignIn from '../hooks/useSignIn';
+
 import * as yup from 'yup';
 
 const styles = StyleSheet.create({
@@ -19,12 +21,26 @@ const logInSchema = yup.object().shape({
 });
 
 const SignIn = () => {
+  const [signIn, { data }] = useSignIn();
+
+  console.log(data);
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      await signIn({ username, password });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <HideKeyboard>
       <FormikForm
         validationSchema={logInSchema}
         initialValues={{ username: '', password: '' }}
-        onSubmit={(values) => console.log(values)}>
+        onSubmit={onSubmit}>
         <View style={styles.container}>
           <FormikTextInput
             autoCapitalize='none'
