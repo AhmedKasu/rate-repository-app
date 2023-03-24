@@ -5,6 +5,8 @@ import FormikTextInput from './forms/FormikTextInput';
 import HideKeyboard from './forms/HideKeyboard';
 import SubmitButton from './forms/SubmitButton';
 
+import { useNavigate } from 'react-router-native';
+
 import useSignIn from '../hooks/useSignIn';
 
 import * as yup from 'yup';
@@ -22,17 +24,16 @@ const logInSchema = yup.object().shape({
 
 const SignIn = () => {
   const [signIn, { data }] = useSignIn();
-
-  console.log(data);
+  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
-    const { username, password } = values;
-
     try {
-      await signIn({ username, password });
+      await signIn(values);
     } catch (e) {
       console.log(e);
     }
+
+    if (data?.authenticate.accessToken) navigate('/');
   };
 
   return (
