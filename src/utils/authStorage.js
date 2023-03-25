@@ -27,7 +27,7 @@ class AuthStorage {
 
   async removeAccessToken() {
     try {
-      await AsyncStorage.removeItem(`${this.namespace}:products`);
+      await AsyncStorage.removeItem(`${this.namespace}:token`);
     } catch (e) {
       console.log('error removing access token: ', e);
     }

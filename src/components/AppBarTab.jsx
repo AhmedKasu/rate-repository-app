@@ -5,7 +5,7 @@ import Text from './Text';
 
 const styles = StyleSheet.create({
   container: {
-    paddingRight: 30,
+    paddingRight: 50,
   },
 });
 
@@ -18,15 +18,23 @@ const AppBarTab = ({
   onPress,
 }) => {
   return (
-    <View style={styles.container}>
-      <Pressable onPress={onPress}>
-        <Link to={linkUrl}>
+    <>
+      {linkUrl ? (
+        <View style={styles.container}>
+          <Link to={linkUrl}>
+            <Text color={color} fontSize={fontSize} fontWeight={fontWeight}>
+              {title}
+            </Text>
+          </Link>
+        </View>
+      ) : (
+        <Pressable onPress={onPress}>
           <Text color={color} fontSize={fontSize} fontWeight={fontWeight}>
             {title}
           </Text>
-        </Link>
-      </Pressable>
-    </View>
+        </Pressable>
+      )}
+    </>
   );
 };
 

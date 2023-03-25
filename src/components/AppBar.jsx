@@ -2,11 +2,14 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 
 import AppBarTab from './AppBarTab';
 import SafeAreaView from './SafeAreaView';
+
 import theme from '../theme';
+import useAuthenticatedUser from '../hooks/useAuthUser';
+import useSignOut from '../hooks/useSIgnOut';
 
 const styles = StyleSheet.create({
   barTabs: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 20,
     paddingTop: 55,
   },
   container: {
@@ -17,12 +20,19 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const { user } = useAuthenticatedUser();
+  const { signOut } = useSignOut();
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <ScrollView horizontal style={styles.barTabs}>
           <AppBarTab title='Repositories' linkUrl='/' />
-          <AppBarTab title='Sign In' linkUrl='/signIn' />
+          {user ? (
+            <AppBarTab title='Sign Out' onPress={() => signOut()} />
+          ) : (
+            <AppBarTab title='Sign In' linkUrl='/signIn' />
+          )}
         </ScrollView>
       </View>
     </SafeAreaView>
