@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
 const RepositoryItemHeader = ({ title, subTitile }) => {
   return (
-    <View style={styles.container}>
+    <View testID='repositoryHeader' style={styles.container}>
       <Text fontSize='heading' fontWeight='bold' style={styles.title}>
         {title}
       </Text>

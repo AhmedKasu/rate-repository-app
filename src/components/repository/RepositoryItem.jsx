@@ -46,7 +46,7 @@ const RepositoryItem = ({ repository }) => {
         </View>
       </View>
 
-      <View style={styles.footer}>
+      <View testID='repositoryActivities' style={styles.footer}>
         <ItemActivities title={repository.stargazersCount} subTitle='Stars' />
         <ItemActivities title={repository.forksCount} subTitle='Forks' />
         <ItemActivities title={repository.reviewCount} subTitle='Reviews' />

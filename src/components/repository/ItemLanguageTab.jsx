@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 const ItemLanguageTab = ({ title }) => {
   const width = `${(title.length / 3) * 12}%`;
   return (
-    <View style={[styles.container, { width }]}>
+    <View testID='languageTab' style={[styles.container, { width }]}>
       <Text color='white' fontSize='heading' fontWeight='bold'>
         {title}
       </Text>
