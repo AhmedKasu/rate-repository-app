@@ -20,17 +20,7 @@ const logInSchema = yup.object().shape({
   password: yup.string().required().label('Password'),
 });
 
-const SignIn = () => {
-  const [signIn] = useSignIn();
-
-  const onSubmit = async (values) => {
-    try {
-      await signIn(values);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
+export const SignInContainer = ({ onSubmit }) => {
   return (
     <HideKeyboard>
       <FormikForm
@@ -55,6 +45,20 @@ const SignIn = () => {
       </FormikForm>
     </HideKeyboard>
   );
+};
+
+const SignIn = () => {
+  const [signIn] = useSignIn();
+
+  const handleSubmit = async (values) => {
+    try {
+      await signIn(values);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return <SignInContainer onSubmit={handleSubmit} />;
 };
 
 export default SignIn;
