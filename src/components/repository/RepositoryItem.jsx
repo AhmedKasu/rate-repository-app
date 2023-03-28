@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   gitHubButton: {
-    padding: 10,
+    padding: 15,
   },
   image: {
     paddingHorizontal: 15,
   },
   languageTab: {
-    marginTop: 25,
+    marginTop: 15,
   },
   footer: {
     paddingTop: 20,
@@ -44,7 +44,7 @@ const RepositoryItem = ({ repository, onButtonPress, onItemPress }) => {
           <View style={styles.details}>
             <RepositoryItemHeader
               title={repository.fullName}
-              subTitile={repository.description}
+              subTitle={repository.description}
             />
             <View style={styles.languageTab}>
               <ItemLanguageTab title={repository.language} />

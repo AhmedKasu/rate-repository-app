@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: theme.colors.primary,
     borderRadius: 5,
-    height: 40,
+    height: 37,
     justifyContent: 'center',
   },
 });
@@ -18,7 +18,7 @@ const ItemLanguageTab = ({ title }) => {
   const width = `${(title.length / 3) * 12}%`;
   return (
     <View testID='languageTab' style={[styles.container, { width }]}>
-      <Text color='white' fontSize='heading' fontWeight='bold'>
+      <Text color='white' fontSize='subheading' fontWeight='bold'>
         {title}
       </Text>
     </View>

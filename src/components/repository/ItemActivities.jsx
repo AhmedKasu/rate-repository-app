@@ -18,10 +18,10 @@ const ItemActivities = ({ title, subTitle }) => {
   };
   return (
     <View style={styles.container}>
-      <Text fontSize='heading' fontWeight='bold' style={styles.title}>
+      <Text fontSize='subheading' fontWeight='bold' style={styles.title}>
         {kFormatter(title)}
       </Text>
-      <Text fontSize='heading' color='textSecondary'>
+      <Text fontSize='subheading' color='textSecondary'>
         {subTitle}
       </Text>
     </View>

@@ -2,9 +2,9 @@ import { Image, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   image: {
-    borderRadius: 12,
-    height: 80,
-    width: 80,
+    borderRadius: 6,
+    height: 70,
+    width: 70,
   },
 });
 
