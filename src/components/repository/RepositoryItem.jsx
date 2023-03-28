@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
+import Button from '../Button';
 import ItemActivities from './ItemActivities';
 import ItemLanguageTab from './ItemLanguageTab';
 import RepositoryItemImage from './RepositoryItemImage';
@@ -13,6 +14,9 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
+  },
+  gitHubButton: {
+    padding: 10,
   },
   image: {
     paddingHorizontal: 15,
@@ -27,32 +31,43 @@ const styles = StyleSheet.create({
   },
 });
 
-const RepositoryItem = ({ repository }) => {
+const RepositoryItem = ({ repository, onButtonPress, onItemPress }) => {
+  if (!repository) return null;
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.image}>
-          <RepositoryItemImage imageUrl={repository.ownerAvatarUrl} />
-        </View>
+    <Pressable onPress={onItemPress}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.image}>
+            <RepositoryItemImage imageUrl={repository.ownerAvatarUrl} />
+          </View>
 
-        <View style={styles.details}>
-          <RepositoryItemHeader
-            title={repository.fullName}
-            subTitile={repository.description}
-          />
-          <View style={styles.languageTab}>
-            <ItemLanguageTab title={repository.language} />
+          <View style={styles.details}>
+            <RepositoryItemHeader
+              title={repository.fullName}
+              subTitile={repository.description}
+            />
+            <View style={styles.languageTab}>
+              <ItemLanguageTab title={repository.language} />
+            </View>
           </View>
         </View>
-      </View>
 
-      <View testID='repositoryActivities' style={styles.footer}>
-        <ItemActivities title={repository.stargazersCount} subTitle='Stars' />
-        <ItemActivities title={repository.forksCount} subTitle='Forks' />
-        <ItemActivities title={repository.reviewCount} subTitle='Reviews' />
-        <ItemActivities title={repository.ratingAverage} subTitle='Rating' />
+        <View testID='repositoryActivities' style={styles.footer}>
+          <ItemActivities title={repository.stargazersCount} subTitle='Stars' />
+          <ItemActivities title={repository.forksCount} subTitle='Forks' />
+          <ItemActivities title={repository.reviewCount} subTitle='Reviews' />
+          <ItemActivities title={repository.ratingAverage} subTitle='Rating' />
+        </View>
+
+        <View style={styles.gitHubButton}>
+          <Button
+            title='Open In GitHub'
+            onPress={onButtonPress}
+            visible={onButtonPress !== undefined}
+          />
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const Button = ({ title, onPress }) => {
+const Button = ({ title, onPress, visible = true }) => {
+  if (!visible) return null;
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text color='white' fontSize='heading' fontWeight='bold'>

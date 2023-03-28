@@ -5,6 +5,7 @@ export const CORE_REPOSITORY_PARTS = gql`
     description
     fullName
     forksCount
+    id
     language
     ratingAverage
     reviewCount
