@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const RepositoryItemImage = ({ imageUrl }) => {
+const ItemImage = ({ imageUrl }) => {
   return <Image style={styles.image} source={{ uri: imageUrl }} />;
 };
 
-export default RepositoryItemImage;
+export default ItemImage;

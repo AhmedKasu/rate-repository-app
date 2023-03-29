@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const RepositoryItemHeader = ({ title, subTitle }) => {
+const ItemHeader = ({ title, subTitle }) => {
   return (
     <View testID='repositoryHeader' style={styles.container}>
       <Text fontSize='subheading' fontWeight='bold' style={styles.title}>
@@ -25,4 +25,4 @@ const RepositoryItemHeader = ({ title, subTitle }) => {
   );
 };
 
-export default RepositoryItemHeader;
+export default ItemHeader;

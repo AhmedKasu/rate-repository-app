@@ -4,8 +4,8 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import Button from '../Button';
 import ItemActivities from './ItemActivities';
 import ItemLanguageTab from './ItemLanguageTab';
-import RepositoryItemImage from './RepositoryItemImage';
-import RepositoryItemHeader from './RepositoryItemHeader';
+import ItemImage from './ItemImage';
+import ItemHeader from './ItemHeader';
 
 const styles = StyleSheet.create({
   container: { paddingVertical: 20 },
@@ -38,11 +38,11 @@ const RepositoryItem = ({ repository, onButtonPress, onItemPress }) => {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.image}>
-            <RepositoryItemImage imageUrl={repository.ownerAvatarUrl} />
+            <ItemImage imageUrl={repository.ownerAvatarUrl} />
           </View>
 
           <View style={styles.details}>
-            <RepositoryItemHeader
+            <ItemHeader
               title={repository.fullName}
               subTitle={repository.description}
             />
