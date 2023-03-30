@@ -1,12 +1,16 @@
 import { gql } from '@apollo/client';
 
-import { CORE_REPOSITORY_PARTS } from './fragments';
+import {
+  CORE_REPOSITORY_PARTS,
+  CORE_REVIEW_PARTS,
+  CORE_USER_PARTS,
+} from './fragments';
 
 export const GET_AUTHENTICATED_USER = gql`
+  ${CORE_USER_PARTS}
   query Me {
     me {
-      id
-      username
+      ...CoreUserParts
     }
   }
 `;
@@ -28,6 +32,25 @@ export const GET_REPOSITORIES = gql`
       edges {
         node {
           ...CoreRepositoryParts
+        }
+      }
+    }
+  }
+`;
+
+export const GET_REVIEWS = gql`
+  ${CORE_USER_PARTS}
+  ${CORE_REVIEW_PARTS}
+  query Node($repositoryId: ID!) {
+    repository(id: $repositoryId) {
+      reviews {
+        edges {
+          node {
+            ...CoreReviewParts
+            user {
+              ...CoreUserParts
+            }
+          }
         }
       }
     }

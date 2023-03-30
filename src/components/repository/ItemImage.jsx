@@ -1,4 +1,4 @@
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
   image: {
@@ -8,8 +8,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const ItemImage = ({ imageUrl }) => {
-  return <Image style={styles.image} source={{ uri: imageUrl }} />;
+const ItemImage = ({ imageUrl, style }) => {
+  return (
+    <View style={style}>
+      <Image style={styles.image} source={{ uri: imageUrl }} />
+    </View>
+  );
 };
 
 export default ItemImage;

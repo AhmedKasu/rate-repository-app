@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const ItemLanguageTab = ({ title }) => {
+const ItemLanguageTab = ({ title, style }) => {
   const width = `${(title.length / 3) * 12}%`;
   return (
-    <View testID='languageTab' style={[styles.container, { width }]}>
+    <View testID='languageTab' style={[styles.container, style, { width }]}>
       <Text color='white' fontSize='subheading' fontWeight='bold'>
         {title}
       </Text>

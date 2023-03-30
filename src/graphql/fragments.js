@@ -13,3 +13,18 @@ export const CORE_REPOSITORY_PARTS = gql`
     ownerAvatarUrl
   }
 `;
+
+export const CORE_USER_PARTS = gql`
+  fragment CoreUserParts on User {
+    id
+    username
+  }
+`;
+export const CORE_REVIEW_PARTS = gql`
+  fragment CoreReviewParts on Review {
+    id
+    text
+    rating
+    createdAt
+  }
+`;

@@ -2,6 +2,7 @@ import { Platform } from 'react-native';
 
 const theme = {
   colors: {
+    steelBlue: '#2980B9',
     errorRed: '#d73a4a',
     light: '#f8f4f4',
     medium: '#6e6969',

@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const ItemHeader = ({ title, subTitle }) => {
+const ItemHeader = ({ title, style, subTitle }) => {
   return (
-    <View testID='repositoryHeader' style={styles.container}>
+    <View testID='repositoryHeader' style={[styles.container, style]}>
       <Text fontSize='subheading' fontWeight='bold' style={styles.title}>
         {title}
       </Text>

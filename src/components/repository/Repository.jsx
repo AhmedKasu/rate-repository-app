@@ -1,24 +1,35 @@
-import { StyleSheet, View } from 'react-native';
+import { FlatList } from 'react-native';
 import { useParams } from 'react-router-native';
 import * as Linking from 'expo-linking';
 
 import useRepository from '../../hooks/useRepository';
-import RepositoryItem from './RepositoryItem';
+import useReviews from '../../hooks/useReviews';
 
-const styles = StyleSheet.create({
-  button: { padding: 10 },
-});
+import RepositoryItem from './RepositoryItem';
+import ItemReview from './ItemReview';
+import ItemSeparator from './ItemSeparator';
 
 const Repository = () => {
   const { id } = useParams();
   const { repository } = useRepository(id);
+  const { reviews } = useReviews(id);
+
   return (
-    <>
-      <RepositoryItem
-        repository={repository}
-        onButtonPress={() => Linking.openURL(repository.url)}
-      />
-    </>
+    <FlatList
+      data={reviews}
+      renderItem={({ item }) => <ItemReview review={item} />}
+      ItemSeparatorComponent={ItemSeparator}
+      keyExtractor={(item) => item.node.id}
+      ListHeaderComponent={() => (
+        <>
+          <RepositoryItem
+            repository={repository}
+            onButtonPress={() => Linking.openURL(repository.url)}
+          />
+          <ItemSeparator />
+        </>
+      )}
+    />
   );
 };
 
