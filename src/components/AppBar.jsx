@@ -28,11 +28,19 @@ const AppBar = () => {
       <View style={styles.container}>
         <ScrollView horizontal style={styles.barTabs}>
           <AppBarTab title='Repositories' linkUrl='/' />
-          {user ? (
-            <AppBarTab title='Sign Out' onPress={() => signOut()} />
-          ) : (
-            <AppBarTab title='Sign In' linkUrl='/signIn' />
-          )}
+          <AppBarTab
+            title='Create a review'
+            linkUrl='/createReview'
+            visible={user}
+          />
+
+          <AppBarTab title='Sign in' linkUrl='/signIn' visible={!user} />
+
+          <AppBarTab
+            title='Sign out'
+            onPress={() => signOut()}
+            visible={user}
+          />
         </ScrollView>
       </View>
     </SafeAreaView>

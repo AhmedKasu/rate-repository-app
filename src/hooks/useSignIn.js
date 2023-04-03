@@ -14,7 +14,7 @@ const useSignIn = () => {
       variables: { credentials: { username, password } },
     });
 
-    if (data?.authenticate.accessToken) navigate('/');
+    if (data) navigate('/');
 
     await authStorage.setAccessToken(data?.authenticate.accessToken);
     apolloClient.resetStore();

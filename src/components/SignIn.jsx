@@ -1,5 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
+import ErrorMessage from './forms/ErrorMessage';
 import FormikForm from './forms/FormikForm';
 import FormikTextInput from './forms/FormikTextInput';
 import HideKeyboard from './forms/HideKeyboard';
@@ -20,7 +21,7 @@ const logInSchema = yup.object().shape({
   password: yup.string().required().label('Password'),
 });
 
-export const SignInContainer = ({ onSubmit }) => {
+export const SignInContainer = ({ error, onSubmit }) => {
   return (
     <HideKeyboard>
       <FormikForm
@@ -28,6 +29,7 @@ export const SignInContainer = ({ onSubmit }) => {
         initialValues={{ username: '', password: '' }}
         onSubmit={onSubmit}>
         <View style={styles.container}>
+          <ErrorMessage error={error?.message} visible={error} />
           <FormikTextInput
             autoCapitalize='none'
             name='username'
@@ -48,7 +50,7 @@ export const SignInContainer = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const [signIn] = useSignIn();
+  const [signIn, { error }] = useSignIn();
 
   const handleSubmit = async (values) => {
     try {
@@ -58,7 +60,7 @@ const SignIn = () => {
     }
   };
 
-  return <SignInContainer onSubmit={handleSubmit} />;
+  return <SignInContainer error={error} onSubmit={handleSubmit} />;
 };
 
 export default SignIn;

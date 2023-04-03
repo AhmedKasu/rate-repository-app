@@ -5,10 +5,10 @@ import {
   View,
 } from 'react-native';
 
-const HideKeyboard = ({ children }) => {
+const HideKeyboard = ({ children, style }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>{children}</View>
+      <View style={[styles.container, style]}>{children}</View>
     </TouchableWithoutFeedback>
   );
 };

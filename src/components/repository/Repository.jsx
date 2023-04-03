@@ -12,7 +12,9 @@ import ItemSeparator from './ItemSeparator';
 const Repository = () => {
   const { id } = useParams();
   const { repository } = useRepository(id);
-  const { reviews } = useReviews(id);
+
+  const { getReviews } = useReviews();
+  const { reviews } = getReviews(id);
 
   return (
     <FlatList
