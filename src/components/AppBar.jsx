@@ -35,6 +35,7 @@ const AppBar = () => {
           />
 
           <AppBarTab title='Sign in' linkUrl='/signIn' visible={!user} />
+          <AppBarTab title='Sign Up' linkUrl='/signUp' visible={!user} />
 
           <AppBarTab
             title='Sign out'

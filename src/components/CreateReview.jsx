@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 import * as yup from 'yup';
 
 import useReviews from '../hooks/useReviews';
-import useAuthenticatedUser from '../hooks/useAuthUser';
 
 import ErrorMessage from './forms/ErrorMessage';
 import FormikForm from './forms/FormikForm';
@@ -28,7 +27,6 @@ const CreateReview = () => {
   const {
     createReview: [create, { error }],
   } = useReviews();
-  const { user } = useAuthenticatedUser();
 
   const handleSubmit = async (values) => {
     try {

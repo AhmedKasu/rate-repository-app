@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-import { CORE_REVIEW_PARTS } from './fragments';
+import { CORE_REVIEW_PARTS, CORE_USER_PARTS } from './fragments';
 
 export const CREATE_REVIEW = gql`
   ${CORE_REVIEW_PARTS}
@@ -16,6 +16,15 @@ export const AUTHENTICATE_USER = gql`
   mutation Authenticate($credentials: AuthenticateInput) {
     authenticate(credentials: $credentials) {
       accessToken
+    }
+  }
+`;
+
+export const CREATE_USER = gql`
+  ${CORE_USER_PARTS}
+  mutation CreateUser($user: CreateUserInput) {
+    createUser(user: $user) {
+      ...CoreUserParts
     }
   }
 `;
