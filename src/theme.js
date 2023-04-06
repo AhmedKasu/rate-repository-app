@@ -4,7 +4,7 @@ const theme = {
   colors: {
     steelBlue: '#2980B9',
     errorRed: '#d73a4a',
-    light: '#f8f4f4',
+    light: '#e1e4e8',
     medium: '#6e6969',
     primary: '#0366d6',
     textPrimary: '#24292e',

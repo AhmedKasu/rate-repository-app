@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.light,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 80,
+    height: 70,
     paddingHorizontal: 20,
   },
 });

@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FlatList } from 'react-native';
 import { useNavigate } from 'react-router-native';
+import { useDebounce } from 'use-debounce';
 
 import useRepositories from '../../hooks/useRepositories';
 
 import ItemSeparator from './ItemSeparator';
 import RepositoryItem from './RepositoryItem';
-import Picker from '../Picker';
+import RepositoryListHeader from './RepositoryListHeader';
 
 const orderPrinciples = [
   {
@@ -36,6 +37,8 @@ export const RepositoryListContainer = ({
   repositories,
   selectedOrder,
   setSelectedOrder,
+  searchQuery,
+  onSearchQueryChange,
 }) => {
   const navigate = useNavigate();
 
@@ -43,17 +46,24 @@ export const RepositoryListContainer = ({
     ? repositories.edges.map((edge) => edge.node)
     : [];
 
+  const renderRepositoryHeader = useCallback(
+    () => (
+      <RepositoryListHeader
+        pickerItems={orderPrinciples}
+        pickerOnSelectItem={(item) => setSelectedOrder(item)}
+        pickerSelectedItem={selectedOrder.label}
+        searchQuery={searchQuery}
+        onSearchQueryChange={(query) => onSearchQueryChange(query)}
+      />
+    ),
+    [searchQuery]
+  );
+
   return (
     <FlatList
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
-      ListHeaderComponent={() => (
-        <Picker
-          items={orderPrinciples}
-          onSelectItem={(item) => setSelectedOrder(item)}
-          selectedItem={selectedOrder.label}
-        />
-      )}
+      ListHeaderComponent={renderRepositoryHeader()}
       renderItem={({ item }) => (
         <RepositoryItem
           repository={item}
@@ -66,13 +76,21 @@ export const RepositoryListContainer = ({
 
 const RepositoryList = () => {
   const [selectedOrder, setSelectedOrder] = useState(orderPrinciples[0]);
-  const { repositories } = useRepositories(selectedOrder.value);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchKeyword] = useDebounce(searchQuery, 500);
+
+  const { repositories } = useRepositories({
+    ...selectedOrder.value,
+    searchKeyword,
+  });
 
   return (
     <RepositoryListContainer
       repositories={repositories}
       selectedOrder={selectedOrder}
       setSelectedOrder={setSelectedOrder}
+      searchQuery={searchQuery}
+      onSearchQueryChange={(query) => setSearchQuery(query)}
     />
   );
 };
