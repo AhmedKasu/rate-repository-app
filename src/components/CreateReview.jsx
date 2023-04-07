@@ -25,12 +25,12 @@ const reviewSchema = yup.object().shape({
 
 const CreateReview = () => {
   const {
-    createReview: [create, { error }],
+    create: [createReview, { error }],
   } = useReviews();
 
   const handleSubmit = async (values) => {
     try {
-      await create(values);
+      await createReview(values);
     } catch (e) {
       console.log(e);
     }

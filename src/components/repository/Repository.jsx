@@ -19,7 +19,9 @@ const Repository = () => {
   return (
     <FlatList
       data={reviews}
-      renderItem={({ item }) => <ItemReview review={item} />}
+      renderItem={({ item }) => (
+        <ItemReview review={{ ...item.node, title: item.node.user.username }} />
+      )}
       ItemSeparatorComponent={ItemSeparator}
       keyExtractor={(item) => item.node.id}
       ListHeaderComponent={() => (

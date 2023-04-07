@@ -22,14 +22,14 @@ const ItemReview = ({ review }) => {
   if (review)
     return (
       <View View style={styles.container}>
-        <ItemRating rating={review.node.rating} />
+        <ItemRating rating={review.rating} />
 
         <View style={styles.details}>
           <ItemHeader
-            title={review.node.user.username}
-            subTitle={format(new Date(review.node.createdAt), 'dd/MM/yyyy')}
+            title={review.title}
+            subTitle={format(new Date(review.createdAt), 'dd/MM/yyyy')}
           />
-          <Text style={styles.text}>{review.node.text}</Text>
+          <Text style={styles.text}>{review.text}</Text>
         </View>
       </View>
     );

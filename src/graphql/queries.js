@@ -8,9 +8,22 @@ import {
 
 export const GET_AUTHENTICATED_USER = gql`
   ${CORE_USER_PARTS}
-  query Me {
+  ${CORE_REVIEW_PARTS}
+  query Me($includeReviews: Boolean = false) {
     me {
       ...CoreUserParts
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            ...CoreReviewParts
+            repository {
+              description
+              fullName
+              id
+            }
+          }
+        }
+      }
     }
   }
 `;

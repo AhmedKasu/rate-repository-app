@@ -33,6 +33,7 @@ const AppBar = () => {
             linkUrl='/createReview'
             visible={user}
           />
+          <AppBarTab title='My reviews' linkUrl='/myReviews' visible={user} />
 
           <AppBarTab title='Sign in' linkUrl='/signIn' visible={!user} />
           <AppBarTab title='Sign Up' linkUrl='/signUp' visible={!user} />
