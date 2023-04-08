@@ -38,6 +38,7 @@ export const RepositoryListContainer = ({
   selectedOrder,
   setSelectedOrder,
   searchQuery,
+  onEndReach,
   onSearchQueryChange,
 }) => {
   const navigate = useNavigate();
@@ -64,6 +65,8 @@ export const RepositoryListContainer = ({
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       ListHeaderComponent={renderRepositoryHeader()}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
       renderItem={({ item }) => (
         <RepositoryItem
           repository={item}
@@ -79,10 +82,15 @@ const RepositoryList = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchKeyword] = useDebounce(searchQuery, 500);
 
-  const { repositories } = useRepositories({
+  const { repositories, fetchMore } = useRepositories({
+    first: 8,
     ...selectedOrder.value,
     searchKeyword,
   });
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   return (
     <RepositoryListContainer
@@ -90,6 +98,7 @@ const RepositoryList = () => {
       selectedOrder={selectedOrder}
       setSelectedOrder={setSelectedOrder}
       searchQuery={searchQuery}
+      onEndReach={onEndReach}
       onSearchQueryChange={(query) => setSearchQuery(query)}
     />
   );

@@ -41,11 +41,15 @@ export const GET_REPOSITORY = gql`
 export const GET_REPOSITORIES = gql`
   ${CORE_REPOSITORY_PARTS}
   query Repositories(
+    $first: Int
+    $after: String
     $orderBy: AllRepositoriesOrderBy
     $orderDirection: OrderDirection
     $searchKeyword: String
   ) {
     repositories(
+      after: $after
+      first: $first
       orderBy: $orderBy
       orderDirection: $orderDirection
       searchKeyword: $searchKeyword
@@ -54,6 +58,12 @@ export const GET_REPOSITORIES = gql`
         node {
           ...CoreRepositoryParts
         }
+        cursor
+      }
+      pageInfo {
+        startCursor
+        endCursor
+        hasNextPage
       }
     }
   }
