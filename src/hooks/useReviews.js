@@ -9,16 +9,33 @@ const useReviews = () => {
   const [deleteMutate] = useMutation(DELETE_REVIEW);
   const navigate = useNavigate();
 
-  const getReviews = (repositoryId) => {
-    const { data, error, loading } = useQuery(GET_REVIEWS, {
+  const getReviews = ({ repositoryId, first }) => {
+    const { data, loading, fetchMore, ...result } = useQuery(GET_REVIEWS, {
       fetchPolicy: 'cache-and-network',
-      variables: { repositoryId },
+      variables: { repositoryId, first },
     });
+
+    const pageInfo = data?.repository.reviews.pageInfo;
+
+    const handleFetchMore = () => {
+      const canFetchMore = !loading && pageInfo.hasNextPage;
+
+      if (!canFetchMore) return;
+
+      fetchMore({
+        variables: {
+          after: pageInfo.endCursor,
+          first,
+          repositoryId,
+        },
+      });
+    };
 
     return {
       reviews: data?.repository.reviews.edges,
-      error,
+      fetchMore: handleFetchMore,
       loading,
+      ...result,
     };
   };
 

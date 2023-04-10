@@ -10,9 +10,7 @@ const useRepositories = ({ first, orderBy, orderDirection, searchKeyword }) => {
   const handleFetchMore = () => {
     const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
 
-    if (!canFetchMore) {
-      return;
-    }
+    if (!canFetchMore) return;
 
     fetchMore({
       variables: {

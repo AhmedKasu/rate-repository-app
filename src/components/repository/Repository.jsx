@@ -14,7 +14,11 @@ const Repository = () => {
   const { repository } = useRepository(id);
 
   const { getReviews } = useReviews();
-  const { reviews } = getReviews(id);
+  const { reviews, fetchMore } = getReviews({ repositoryId: id, first: 2 });
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   return (
     <FlatList
@@ -24,6 +28,8 @@ const Repository = () => {
       )}
       ItemSeparatorComponent={ItemSeparator}
       keyExtractor={(item) => item.node.id}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
       ListHeaderComponent={() => (
         <>
           <RepositoryItem

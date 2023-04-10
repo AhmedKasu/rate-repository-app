@@ -72,9 +72,10 @@ export const GET_REPOSITORIES = gql`
 export const GET_REVIEWS = gql`
   ${CORE_USER_PARTS}
   ${CORE_REVIEW_PARTS}
-  query Node($repositoryId: ID!) {
+  query Node($repositoryId: ID!, $first: Int, $after: String) {
     repository(id: $repositoryId) {
-      reviews {
+      id
+      reviews(first: $first, after: $after) {
         edges {
           node {
             ...CoreReviewParts
@@ -82,6 +83,12 @@ export const GET_REVIEWS = gql`
               ...CoreUserParts
             }
           }
+          cursor
+        }
+        pageInfo {
+          startCursor
+          hasNextPage
+          endCursor
         }
       }
     }
